@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Napkin Companion",
+  "short_name": "Napkin Companion",
+  "version": "0.1.0",
+  "description": "Generate Napkin visuals from selected webpage text without leaving your browsing workflow. Unofficial; requires your own Napkin API token.",
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_title": "Napkin Companion"
+  },
+  "side_panel": {
+    "default_path": "src/sidepanel/index.html"
+  },
+  "options_page": "src/options/index.html",
+  "background": {
+    "service_worker": "src/background/index.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "sidePanel",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.napkin.ai/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "exclude_matches": [
+        "https://api.napkin.ai/*",
+        "https://app.napkin.ai/*"
+      ],
+      "js": [
+        "src/content/index.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "generate-with-napkin": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+N",
+        "mac": "Command+Shift+N"
+      },
+      "description": "Generate a visual with Napkin from the current selection"
+    }
+  },
+  "icons": {
+    "16": "src/assets/icon16.png",
+    "48": "src/assets/icon48.png",
+    "128": "src/assets/icon128.png"
+  }
+}

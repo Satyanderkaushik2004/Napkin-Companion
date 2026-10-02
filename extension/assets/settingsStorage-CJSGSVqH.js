@@ -1,0 +1,1 @@
+const n="napkin_companion_settings",o={defaultStyleId:null,defaultFormat:"svg",smartDetectionEnabled:!0,floatingButtonPosition:"bottom-right",theme:"system"};async function a(){const t=await chrome.storage.local.get(n);return{...o,...t[n]??{}}}async function r(t){const e={...await a(),...t};return await chrome.storage.local.set({[n]:e}),e}export{a as g,r as u};

@@ -1,0 +1,1 @@
+const s="napkin_pending_action";async function t(n){await chrome.storage.session.set({[s]:n})}async function o(){const e=(await chrome.storage.session.get(s))[s]??null;return e&&await chrome.storage.session.remove(s),e}export{o as c,t as s};
